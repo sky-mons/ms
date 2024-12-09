@@ -1,54 +1,54 @@
-//  HTML code for the buttons on the HTML layout pages
-//  <button class="tablinks" onclick="openCity(event, 'A', 'Mon1')">Full</button>
-//  <button class="tablinks" onclick="openCity(event, 'C', 'Mon1')">4-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'E', 'Mon1')">8-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'F', 'Mon1')">9-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'G', 'Mon1')">12-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'H', 'Mon1')">16-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'K', 'Mon1')">25-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'P', 'Mon1')">10-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'Q', 'Mon1')">5-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'R', 'Mon1')">6-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'S', 'Mon1')">9-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'V', 'Mon1')">7-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'X', 'Mon1')">13-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'Y', 'Mon1')">13-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'EE', 'Mon1')">7-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'GG', 'Mon1')">10-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'OO', 'Mon1')">30-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'xxx1', 'Mon2')">6-way</button>
-//  <button class="tablinks" onclick="openCity(event, 'xxx2', 'Mon2')">6-way</button>
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//// This javascript file loads the default layout for each monitor and changes the layouts when tabs are changed ////
+//// There are two functions. "openLayout" populates the tabs and allows switching between layouts ///////////////////
+//// "openDefault" opens the default layout for each monitor /////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Get the element with id="defaultOpen" and click on it. Displays the default layout on page load.
-function openDefaults() {
-    'use strict';
-    let mon = "";
-        for (let i = 1; i < 11; i += 1) {
-        mon = "defaultOpen" + i;
-        document.getElementById(mon).click();
-    }
-}
 
-//On layout click, the function "openCity" is called with the variables evt, layoutName and mon.
-function openCity(evt, layoutName, mon) {
-    'use strict';
-    var i, tabcontent, tablinks;
+///////////////////////////////////////////////////////////////////////////////////////////////
+// HTML code example for the buttons on the HTML layout pages - NOT FOR USE IN THIS FILE! //////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// EXAMPLE: /// <button class="tablinks" onclick="openLayout('A', 'Mon1')">Full</button> ///////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// "button" creates the tab for the layout /////////////////////////////////////////////////////
+// class="tablinks" styles the tab button //////////////////////////////////////////////////////
+// onclick="openLayout(....) calls the function openLayout to change the monitor layout ////////
+// The first variable, in this example 'A', refers to the layout design below //////////////////
+// The second variable refers to which monitor on the HTML layout to change, e.g. 'Mon1' ///////
+// Make sure this is changing the correct monitor! /////////////////////////////////////////////
+// The text before </button> id the name shown on the tab button ///////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// To set the default layout to be opened, an additional attribute  is required ////////////////
+// id="defaultOpen1" is required within the <button> tag ///////////////////////////////////////
+// The number on the end refers to the monitor for which it applies to! ////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// <button class="tablinks" onclick="openLayout('A', 'Mon1')" id="defaultOpen1">Full</button> //
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Function "openLayout" parses the variables "layoutName" and "mon" from the HTML file ////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+function openLayout(layoutName, mon) {    // "layoutName" is the layout design to be recalled, "mon" is the monitor to which it applies
+    'use strict';                         // Defines that JavaScript code should be executed in "strict mode".
+    var i, tablinks;                      // "i" is a counting variable for loading of tabs // "tablinks" is the classname of the element 
     
-    //tabcontent = document.getElementsByClassName("tabcontent");
-    //for (i = 0; i < tabcontent.length; i += 1) {
-    //    tabcontent[i].style.display = "none";
-    //}
-    
+    //////////////////////////////////////////////////////////////////////////////////
+    // Adds the layout tabs at the top of the monitor as specified in the HTML file //
+    // for loop that repeats until all layout tabs have been added for that monitor //
+    //////////////////////////////////////////////////////////////////////////////////
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i += 1) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        // tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     
-    //document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-    
-    
-    //Change layout to monitor based on layout requested. "Case" is a layout parsed, "mon" is the monitor ID parsed
+    ////////////////////////////////////////////////////////////////////////////////////
+    // Change layout to monitor based on layout requested. /////////////////////////////
+    // "case" is a layout parsed, "mon" is the monitor ID parsed. //////////////////////
+    // The HTML for the layout is contained within single quotes after ".innerHTML =" //
+    ////////////////////////////////////////////////////////////////////////////////////
     switch (layoutName) {
     case "A": // Full
         document.getElementById(mon).innerHTML = '<table class="table"> <tr style="height: 240px"><td><input type="text" class="textbox"></td></tr></table>';
@@ -116,9 +116,47 @@ function openCity(evt, layoutName, mon) {
             
     case "xxx1": // 1+5 way - Special Producer 1 Layout
         document.getElementById(mon).innerHTML = '<table class="table"> <tr style="height: 80px"><td colspan="2" rowspan="2"><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 80px"><td><input type="text" class="textbox"></td></tr><tr style="height: 80px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr></table>';
-       break;        
+        break;        
     case "xxx2": // 1+5 way - Special Producer 1 Layout
         document.getElementById(mon).innerHTML = '<table class="table"> <tr style="height: 80px"><td><input type="text" class="textbox"></td><td colspan="2" rowspan="2"><input type="text" class="textbox"></td></tr><tr style="height: 80px"><td><input type="text" class="textbox"></td></tr><tr style="height: 80px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr></table>';
-       break;      
+        break;
+            
+    case "1A5": // PCR1 - 3+2
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 80px"><td colspan="2"><input type="text" class="textbox"></td><td colspan="2"><input type="text" class="textbox"></td><td colspan="2"><input type="text" class="textbox"></td></tr><tr style="height: 40px"></tr><tr style="height: 120px"><td colspan="3"><input type="text" class="textbox"></td><td colspan="3"><input type="text" class="textbox"></td></tr><tr style="height: 0px"><td/><td/><td/><td/><td/><td/></tr></table>';
+        break;
+    case "1B7": // PCR1 - Quad-in-quad, UL
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td colspan="2" rowspan="2"><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 120px"><td colspan="2"><input type="text" class="textbox"></td><td colspan="2"><input type="text" class="textbox"></td></tr><tr style="height: 0px"><td/><td/><td/><td/></tr></table>';
+        break;
+    case "1E7": // PCR1 - Quad-in-quad, LR
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 120px"><td colspan="2"><input type="text" class="textbox"></td><td colspan="2"><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td colspan="2" rowspan="2"><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 0px"><td/><td/><td/><td/></tr>';
+        break;
+    case "1H8": // PCR1 - 8-way, large LL
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td colspan="3" rowspan="3"><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td></tr></table>';
+        break;
+    case "1I8": // PCR1 - 8-way, large LR
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td colspan="3" rowspan="3"><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td></tr></table>';
+        break;
+    case "1J10": // PCR1 - 10-way, left
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 60px"><td colspan="2" rowspan="2"><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td colspan="2" rowspan="2"><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 0px"><td/><td/><td/><td/></tr></table>';
+        break;
+    case "1L13": // PCR1 - 13-way, large UL
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 60px"><td colspan="2" rowspan="2"><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr></table>';
+        break;    
+    case "1P13": // PCR1 - 13-way, large LR
+        document.getElementById(mon).innerHTML = '<table class="table"><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td><td colspan="2" rowspan="2"><input type="text" class="textbox"></td></tr><tr style="height: 60px"><td><input type="text" class="textbox"></td><td><input type="text" class="textbox"></td></tr></table>';
+        break;  
+        
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Get the element with id="defaultOpen" and click on it. Displays the default layout on page load. //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+function openDefaults() {
+    'use strict';
+    let mon = "";
+        for (let i = 1; i < 11; i += 1) {
+        mon = "defaultOpen" + i;
+        document.getElementById(mon).click();
     }
 }
